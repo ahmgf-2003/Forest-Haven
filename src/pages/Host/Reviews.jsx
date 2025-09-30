@@ -11,7 +11,7 @@ const Reviews = () => {
     return (  
         <div className="reviews">
             <h2 className="heading">
-                Your reviews <span>last <ins>30 days</ins></span>
+                Your reviews <span className="last-days">Last <ins>30 days</ins></span>
             </h2>
             <div className="reviews-rate">
                 <h3>5.0 <span><FaStar /> overall rating</span></h3>

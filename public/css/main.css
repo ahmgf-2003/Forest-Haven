@@ -147,6 +147,19 @@ nav a.active {
     right: auto;
     top: 0;
 }
+.host .heading {
+    font-size: 36px;
+    margin-top: 55px;
+}
+.last-days {
+    font-size: 16px;
+    color: var(--alt-text-color);
+    margin-left: 7px;
+    font-weight: normal;
+}
+.last-days ins {
+    font-weight: bold;
+}
 /* End components */
 
 /* Start header */
@@ -297,7 +310,7 @@ header nav a {
 }
 .lodges .filters a {
     display: inline-block;
-    color: #4d4d4d;
+    color: var(--alt-text-color);
     font-weight: 500;
 }
 .lodges .filters a:not(.clear) {
@@ -503,7 +516,7 @@ header nav a {
     position: relative;
     top: 2px;
     margin-left: 12px;
-    color: #ff8c38;
+    color: var(--main-button-color);
 }
 .host .dashboard .review b {
     color: var(--main-text-color);
@@ -617,7 +630,7 @@ header nav a {
     top: auto;
     right: auto;
     font-weight: normal;
-    color: #4d4d4d;
+    color: var(--alt-text-color);
 }
 .host .host-lodges-info .photo img {
     width: 110px;
@@ -626,15 +639,6 @@ header nav a {
 /* End host lodge */
 
 /* Start host reviews  */
-.host .reviews .heading span {
-    font-size: 16px;
-    color: #4d4d4d;
-    margin-left: 7px;
-    font-weight: normal;
-}
-.host .reviews .heading span ins {
-    font-weight: bold;
-}
 .host .reviews svg {
     color: var(--main-button-color);
 }
@@ -712,6 +716,96 @@ header nav a {
     line-height: 1.4;
 }
 /* End host reviews  */
+
+/* Start host income */
+.host .income .heading span {
+    display: block;
+    margin-top: 43px;
+    margin-left: 0;
+}
+.host .income .total-income {
+    font-size: 48px;
+    font-weight: 800;
+    margin: 31px 0 57px;
+}
+.host .income-table .incomes {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+}
+.host .income-table .incomes span,
+.host .income-table .months span {
+    font-weight: 500;
+    color: var(--alt-text-color);
+}
+.host .income-table .incomes span {
+    height: 20px;
+    font-size: 18px;
+    overflow: hidden;
+    position: relative;
+}
+.host .income-table .incomes span::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    top: 50%;
+    left: 60px;
+    border-bottom: 2px dashed #b9b9b9;
+    transform: translateY(-2px);
+}
+.host .income-table .months {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 70px;
+}
+.host .income-table .months span {
+    padding: 0 5px;
+    font-size: 20px;
+    position: relative;
+}
+.host .income-table .months span::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: var(--height);
+    background-color: #ffead0;
+    border-radius: 6px 6px 0 0;
+    left: 0;
+    bottom: 100%;
+    transform: translateY(-9px);
+}
+.host .income-table .months span.active::after {
+    background-color: var(--main-button-color);
+}
+.host .income .transactions h3  {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    max-width: 450px;
+    font-size: 24px;
+    margin: 62px 0 31px;
+}
+.host .income .transaction {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 35px;
+    margin-bottom: 31px;
+    background-color: white;
+    border-radius: 8px;
+}
+.host .income .transaction h4 {
+    font-size: 36px;
+    font-weight: 600;
+    margin: 0;
+}
+.host .income .transaction p {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--alt-text-color);
+}
+/* End host income */
 
 /* End host section */
 

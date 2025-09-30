@@ -12,6 +12,7 @@ import HostLodgesDetails from "./pages/Host/HostLodgesDetails";
 import HostLodgesPricing from "./pages/Host/HostLodgesPricing";
 import HostLodgesPhotos from "./pages/Host/HostLodgesPhotos";
 import Reviews from "./pages/Host/Reviews";
+import Income from "./pages/Host/Income";
 
 function App() {
     return (
@@ -24,7 +25,7 @@ function App() {
                     <Route path="lodges/:id" element={<Lodge />} />
                     <Route path="host" element={<HostLayout />}>
                         <Route index element={<Dashboard />} />
-                        <Route path="income" element={<h1>⏳Coming soon!!!</h1>} />
+                        <Route path="income" element={<Income />} />
                         <Route path="lodges" element={<HostLodges />} />
                         <Route path="lodges/:id" element={<HostLodgesInfo />}>
                             <Route index element={<HostLodgesDetails />} />

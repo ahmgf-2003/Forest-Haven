@@ -20,7 +20,7 @@ const Host = () => {
                         <span>Income in last <ins>30 days</ins></span>
                         <span>Details</span>
                     </p>
-                    <h3>2,260</h3>
+                    <h3>$2,260</h3>
                 </div>
             </div>
             <div className="review">
