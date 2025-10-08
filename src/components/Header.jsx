@@ -1,4 +1,5 @@
 import { NavLink, Link } from "react-router-dom";
+import { FaRegUserCircle } from "react-icons/fa";
 import logo from "../assets/images/logo.png";
 
 const Header = () => {
@@ -36,6 +37,9 @@ const Header = () => {
                             </NavLink>
                         </li>
                     </ul>
+                    <Link to="/login">
+                        <FaRegUserCircle />
+                    </Link>
                 </nav>
             </div>
         </header>

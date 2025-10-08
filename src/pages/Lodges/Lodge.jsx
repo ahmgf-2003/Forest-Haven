@@ -7,7 +7,8 @@ const Lodge = () => {
     const [lodge, setLodge] = useState(null);
     const location = useLocation();
 
-    const type = location.state?.type;
+    const type = location.state?.type || "";
+    const search = location.state?.search || "";
 
     useEffect(() => {
         fetch("/api/lodge/" + id)
@@ -18,7 +19,7 @@ const Lodge = () => {
     return (
         <section className="lodge">
             <div className="container">
-                <Link to="/lodges" state={{ type }}>
+                <Link to={`..${search}`} relative="path">
                     <FaArrowLeftLong /> Back to {type || "all"} Lodges
                 </Link>
                 {lodge && (

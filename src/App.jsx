@@ -13,6 +13,8 @@ import HostLodgesPricing from "./pages/Host/HostLodgesPricing";
 import HostLodgesPhotos from "./pages/Host/HostLodgesPhotos";
 import Reviews from "./pages/Host/Reviews";
 import Income from "./pages/Host/Income";
+import AuthRequired from "./components/AuthRequired";
+import Login from "./components/Login";
 
 function App() {
     return (
@@ -23,17 +25,20 @@ function App() {
                     <Route path="about" element={<About />} />
                     <Route path="lodges" element={<Lodges />} />
                     <Route path="lodges/:id" element={<Lodge />} />
-                    <Route path="host" element={<HostLayout />}>
-                        <Route index element={<Dashboard />} />
-                        <Route path="income" element={<Income />} />
-                        <Route path="lodges" element={<HostLodges />} />
-                        <Route path="lodges/:id" element={<HostLodgesInfo />}>
-                            <Route index element={<HostLodgesDetails />} />
-                            <Route path="pricing" element={<HostLodgesPricing />} />
-                            <Route path="photos" element={<HostLodgesPhotos />} />
+                    <Route element={<AuthRequired />}>
+                        <Route path="host" element={<HostLayout />}>
+                            <Route index element={<Dashboard />} />
+                            <Route path="income" element={<Income />} />
+                            <Route path="lodges" element={<HostLodges />} />
+                            <Route path="lodges/:id" element={<HostLodgesInfo />}>
+                                <Route index element={<HostLodgesDetails />} />
+                                <Route path="pricing" element={<HostLodgesPricing />} />
+                                <Route path="photos" element={<HostLodgesPhotos />} />
+                            </Route>
+                            <Route path="reviews" element={<Reviews />} />
                         </Route>
-                        <Route path="reviews" element={<Reviews />} />
                     </Route>
+                    <Route path="login" element={<Login />} />
                 </Route>
             </Routes>
         </BrowserRouter>

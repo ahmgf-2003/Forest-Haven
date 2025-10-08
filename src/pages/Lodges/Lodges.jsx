@@ -6,7 +6,7 @@ const Lodges = () => {
     const [searchParams] = useSearchParams();
     const location = useLocation();
 
-    const typeFilter = searchParams.get("type") || location.state?.type;
+    const typeFilter = searchParams.get("type");
 
     useEffect(() => {
         fetch("/api/lodges")
@@ -73,7 +73,7 @@ const Lodges = () => {
                                 return;
                             } 
                             return (
-                                <Link to={lodge.id} state={{type: typeFilter}} className="lodge-card" key={lodge.id}>
+                                <Link to={lodge.id} state={{type: typeFilter, search: location.search}} className="lodge-card" key={lodge.id}>
                                     <img src={lodge.imageUrl} alt={lodge.name}/>
                                     <div className="details">
                                         <span className="name">{lodge.name}</span>
