@@ -207,7 +207,7 @@ header nav a {
 }
 /* End header */
 
-/* Start landing section */
+/* Start landing page */
 .landing {
     background-image: url("/src/assets/images/landing.png");
     background-size: cover;
@@ -245,9 +245,9 @@ header nav a {
     font-weight: bold;
     border-radius: 5px;
 }
-/* End landing section */
+/* End landing page */
 
-/* Start about section */
+/* Start about page */
 .about img {
     height: 400px;
     width: 100%;
@@ -292,13 +292,13 @@ header nav a {
     border-radius: 10px;
 }
 
-/* End about section */
+/* End about page */
 
-/* Start lodges section */
+/* Start lodges page */
 .lodges h2 {
     font-size: 32px;
 }
-/* Start local colors for lodges section */
+/* Start local colors for lodges page */
 .lodges .simple {
     --active-background: #e17654;
 }
@@ -308,7 +308,7 @@ header nav a {
 .lodges .rugged {
     --active-background: #115e59;
 }
-/* End local colors for lodges section */
+/* End local colors for lodges page */
 .lodges .filters {
     margin-top: -10px;
     margin-bottom: 55px;
@@ -377,9 +377,9 @@ header nav a {
     background-color: var(--active-background);
     color: #ffead0;
 }
-/* End lodges section */
+/* End lodges page */
 
-/* Start lodge section */
+/* Start lodge page */
 .lodge a {
     display: flex;
     align-items: center;
@@ -404,12 +404,14 @@ header nav a {
 .lodge img {
     border-radius: 5px;
     width: 100%;
+    overflow: auto; /* fix rresizeing the image in chromioum browsersby change the user agent overflow: clip */
 }
 .lodge .details {
     margin-top: 50px;
 }
 @media (min-width: 768px) {
     .lodge .details {
+        min-width: 300px;
         margin: 0;
     }
 }
@@ -442,9 +444,9 @@ header nav a {
     outline: none;
     border: none;
 }
-/* End lodge section */
+/* End lodge page */
 
-/* Start host section */
+/* Start host page */
 .host {
     position: relative;
 }
@@ -783,7 +785,7 @@ header nav a {
 .host .income-table .months span.active::after {
     background-color: var(--main-button-color);
 }
-.host .income .transactions h3  {
+.host .income .transactions h3 {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -812,7 +814,88 @@ header nav a {
 }
 /* End host income */
 
-/* End host section */
+/* End host page */
+
+/* Start login page */
+.login {
+    text-align: center;
+}
+.login .login-error {
+    color: red;
+    font-size: 28px;
+    margin: 0;
+}
+.login h2 {
+    font-size: 32px;
+    margin-bottom: 50px;
+}
+.login form {
+    max-width: 550px;
+    margin: 0 auto;
+}
+.login form input {
+    width: 100%;
+    padding: 10px 15px;
+    outline: none;
+    border: 1px solid var(--alt-text-color);
+    border-collapse: collapse;
+}
+.login form input[type="email"] {
+    border-radius: 6px 6px 0 0;
+    border-bottom: none;
+}
+.login form input[type="password"] {
+    border-radius: 0 0 6px 6px;
+}
+.login form input::placeholder {
+    color: var(--alt-text-color);
+    opacity: 1;
+    transition: 0.3s;
+}
+.login form input:focus::placeholder {
+    opacity: 0;
+}
+.login form button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: var(--main-button-color);
+    color: white;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    border-radius: 6px;
+}
+.login .create-account {
+    margin-top: 47px;
+    font-weight: 500;
+}
+.login .create-account a {
+    white-space: nowrap;
+    font-weight: bold;
+    color: var(--main-button-color);
+}
+/* Start login page */
+
+/* Start not found page */
+.not-found .container {
+    max-width: 550px;
+    text-align: center;
+}
+.not-found h2 {
+    font-size: 32px;
+}
+.not-found a {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #161616;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 6px;
+}
+/* End not found page */
 
 /* Start footer */
 footer {

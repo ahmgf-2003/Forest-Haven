@@ -15,6 +15,7 @@ import Reviews from "./pages/Host/Reviews";
 import Income from "./pages/Host/Income";
 import AuthRequired from "./components/AuthRequired";
 import Login from "./components/Login";
+import NotFound from "./pages/NotFound";
 
 function App() {
     return (
@@ -39,6 +40,7 @@ function App() {
                         </Route>
                     </Route>
                     <Route path="login" element={<Login />} />
+                    <Route path="*" element={<NotFound />} />
                 </Route>
             </Routes>
         </BrowserRouter>

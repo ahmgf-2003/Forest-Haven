@@ -19,16 +19,15 @@ const Login = () => {
     return (
         <section className="login">
             <div className="container">
+                {message && <h3 className="login-error">{message}</h3>}
                 <h2>Sign in to your account</h2>
-                {message && <h3>{message}</h3>}
                 <form action={handleSubmit}>
                     <input type="email" name="email" placeholder="Email address" />
                     <input type="password" name="password" placeholder="Password" />
                     <button>Sign in</button>
                 </form>
-                <p>
-                Don't have an account?
-                <Link>Create one now</Link>
+                <p className="create-account">
+                    Don't have an account? <Link>Create one now</Link>
                 </p>
             </div>
         </section>
