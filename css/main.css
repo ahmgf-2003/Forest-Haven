@@ -1,0 +1,914 @@
+/* Start variables */
+:root {
+    --main-bakcground-color: #fff7ed;
+    --main-button-color: #ff8c38;
+    --main-text-color: #000;
+    --alt-text-color: #4d4d4d;
+    --main-footer-color: #252525;
+}
+/* End variables */
+
+/* Start global rules */
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: "Inter", sans-serif;
+}
+main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+main > section {
+    flex-grow: 1;
+    background-color: var(--main-bakcground-color);
+}
+a {
+    text-decoration: none;
+}
+img {
+    max-width: 100%;
+}
+button {
+    cursor: pointer;
+}
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* Small screens */
+@media (min-width: 768px) {
+    .container {
+        width: 720px;
+    }
+}
+/* Medium screens */
+@media (min-width: 992px) {
+    .container {
+        width: 960px;
+    }
+}
+/* Large screens */
+@media (min-width: 1200px) {
+    .container {
+        width: 1140px;
+    }
+}
+/* End global rules */
+
+/* Start components */
+nav a {
+    text-decoration: none;
+}
+nav a.active {
+    font-weight: 600;
+    color: var(--main-text-color);
+    text-decoration: underline;
+}
+.simple {
+    --background: #e17654;
+}
+.luxury {
+    --background: #161616;
+}
+.rugged {
+    --background: #115e59;
+}
+/* End local color variables */
+.type {
+    display: block;
+    width: fit-content;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 8px;
+    border-radius: 5px;
+    background-color: var(--background);
+    color: #ffead0;
+}
+.price {
+    position: relative;
+}
+.price::before {
+    content: attr(data-currency);
+}
+.price::after {
+    content: "/day";
+    position: absolute;
+    font-size: 14px;
+    font-weight: 500;
+    right: 0;
+    top: 100%;
+}
+.host .lodges-list h2 {
+    font-size: 24px;
+    color: #161616;
+}
+.host .lodges-list .lodge {
+    display: flex;
+    align-items: center;
+    padding: 18px 24px;
+    margin-bottom: 15px;
+    background-color: white;
+    border-radius: 6px;
+}
+.host .lodges-list img {
+    width: 150px;
+    border-radius: 6px;
+}
+@media (max-width: 767px) {
+    .host .lodges-list img {
+        width: 65px;
+    }
+}
+.host .lodges-list .info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-left: 18px;
+}
+.host .lodges-list h4 {
+    color: #161616;
+    margin: 0;
+    font-size: 20px;
+}
+.host .lodges-list span {
+    display: block;
+    color: var(--alt-text-color);
+    font-size: initial;
+    font-weight: 500;
+    line-height: 1.6;
+}
+.host .lodges-list span::after {
+    font-size: 16px;
+    right: auto;
+    top: 0;
+}
+.host .heading {
+    font-size: 36px;
+    margin-top: 55px;
+}
+.last-days {
+    font-size: 16px;
+    color: var(--alt-text-color);
+    margin-left: 7px;
+    font-weight: normal;
+}
+.last-days ins {
+    font-weight: bold;
+}
+/* End components */
+
+/* Start header */
+header {
+    background-color: var(--main-bakcground-color);
+}
+header .container,
+header .logo,
+header nav,
+header nav ul {
+    display: flex;
+    align-items: center;
+}
+header .container {
+    justify-content: space-between;
+    height: 110px;
+}
+header .logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: var(--main-text-color);
+    text-transform: uppercase;
+}
+header .logo img {
+    margin-right: 3px;
+    width: 50px;
+}
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+header nav li {
+    color: var(--alt-text-color);
+}
+header nav li:not(:last-of-type) {
+    margin-right: 13px;
+}
+header nav svg {
+    margin-left: 15px;
+    font-size: 30px;
+}
+header nav a {
+    color: inherit;
+}
+/* End header */
+
+/* Start landing page */
+.landing {
+    background-image: url("/src/assets/images/landing.png");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    position: relative;
+}
+.landing::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgb(0 0 0 / 0.6);
+}
+.landing .container {
+    position: relative;
+    text-align: center;
+    max-width: 600px;
+}
+.landing .caption {
+    padding-top: 65px;
+}
+.landing .caption h2 {
+    font-size: 38px;
+    font-weight: 800;
+}
+.landing a {
+    display: block;
+    padding: 9px;
+    margin-top: 50px;
+    background-color: var(--main-button-color);
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+}
+/* End landing page */
+
+/* Start about page */
+.about img {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+}
+.about .container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    color: #161616;
+}
+.about .details h2 {
+    text-align: center;
+    font-size: 32px;
+    line-height: 1.2;
+    margin: 0;
+}
+.about .details p {
+    margin: 32px auto 55px;
+    line-height: 1.4;
+}
+.about .details p,
+.about .explore {
+    max-width: 750px;
+}
+.about .explore {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 40px;
+    margin: 0 auto;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: #ffcc8d;
+    border-radius: 5px;
+}
+.about .explore a {
+    font-size: 16px;
+    padding: 12px 22px;
+    margin-top: 25px;
+    max-width: 200px;
+    color: white;
+    background-color: #161616;
+    border-radius: 10px;
+}
+
+/* End about page */
+
+/* Start lodges page */
+.lodges h2 {
+    font-size: 32px;
+}
+/* Start local colors for lodges page */
+.lodges .simple {
+    --active-background: #e17654;
+}
+.lodges .luxury {
+    --active-background: #161616;
+}
+.lodges .rugged {
+    --active-background: #115e59;
+}
+/* End local colors for lodges page */
+.lodges .filters {
+    margin-top: -10px;
+    margin-bottom: 55px;
+}
+.lodges .filters a {
+    display: inline-block;
+    color: var(--alt-text-color);
+    font-weight: 500;
+}
+.lodges .filters a:not(.clear) {
+    padding: 9px 26px;
+    background-color: #ffead0;
+    border-radius: 5px;
+    margin-right: 20px;
+    margin-top: 10px;
+    transition: 0.3s linear;
+}
+@media (max-width: 767px) {
+    .lodges .filters a.clear {
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+}
+.lodges .filters a.clear {
+    margin-left: 40px;
+    text-decoration: underline;
+}
+.lodges .filters a.selected,
+.lodges .filters a:not(.clear):hover {
+    background-color: var(--active-background);
+    color: #ffead0;
+}
+.lodges .lodges-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 30px 35px;
+    padding-bottom: 30px;
+}
+.lodges .lodges-container .lodge-card {
+    color: inherit;
+}
+.lodges .lodges-container img {
+    border-radius: 5px;
+}
+.lodges .lodges-container .details {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.lodges .lodges-container .name,
+.lodges .lodges-container .price {
+    font-size: 20px;
+    font-weight: 600;
+}
+.lodges .lodges-container .details div {
+    width: 100%;
+}
+.lodges .lodges-container .type {
+    display: block;
+    width: fit-content;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 8px;
+    border-radius: 5px;
+    background-color: var(--active-background);
+    color: #ffead0;
+}
+/* End lodges page */
+
+/* Start lodge page */
+.lodge a {
+    display: flex;
+    align-items: center;
+    color: #201f1d;
+    font-weight: 500;
+    margin-bottom: 40px;
+    text-decoration: underline;
+}
+.lodge a svg {
+    color: #858585;
+    margin-right: 6px;
+}
+.lodge .lodge-card {
+    margin-bottom: 25px;
+}
+@media (min-width: 768px) {
+    .lodge .lodge-card {
+        display: flex;
+        gap: 20px;
+    }
+}
+.lodge img {
+    border-radius: 5px;
+    overflow: auto; /* fix rresizeing the image in chromioum browsersby change the user agent overflow: clip */
+}
+.lodge .details {
+    margin-top: 50px;
+}
+@media (min-width: 768px) {
+    .lodge .details {
+        margin: 0;
+    }
+}
+/* Start local color variables */
+.lodge .details p {
+    margin: 0;
+}
+.lodge .details .name {
+    font-size: 32px;
+    font-weight: bold;
+}
+.lodge .details .price {
+    margin: 10px 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+.lodge .details .price::after {
+    position: relative;
+    font-size: 20px;
+    font-weight: 400;
+}
+.lodge .details button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 25px;
+    background-color: var(--main-button-color);
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+}
+/* End lodge page */
+
+/* Start host page */
+.host {
+    position: relative;
+}
+.host nav a {
+    margin-right: 30px;
+    color: var(--alt-text-color);
+}
+
+/* Start dashboard */
+.host .dashboard .details,
+.host .dashboard .review {
+    min-width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.host .dashboard .details {
+    height: 200px;
+    margin-top: 45px;
+    background-color: #ffead0;
+}
+.host .dashboard .details h2,
+.host .dashboard .details p span:last-of-type,
+.host .dashboard .details h3 {
+    margin: 0;
+    color: #161616;
+}
+.host .dashboard .details h2 {
+    margin-top: 10px;
+    font-size: 36px;
+}
+.host .dashboard .details p,
+.host .dashboard .review h2 {
+    max-width: 450px;
+}
+.host .dashboard .details p {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 32px 0;
+    color: var(--alt-text-color);
+}
+.host .dashboard .details p ins {
+    font-weight: 500;
+}
+.host .dashboard .details p span:last-of-type {
+    cursor: pointer;
+}
+.host .dashboard .details h3 {
+    font-size: 48px;
+    font-weight: 700;
+}
+.host .dashboard .review {
+    height: 68px;
+    margin-top: calc(200px + 45px) /* .details height + .details margin top  */;
+    background-color: #ffddb2;
+}
+.host .dashboard .review h2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.host .dashboard .review > span:first-of-type {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+.host .dashboard .review .rate {
+    font-weight: 400;
+    color: var(--alt-text-color);
+    font-size: 20px;
+}
+.host .dashboard .review svg {
+    position: relative;
+    top: 2px;
+    margin-left: 12px;
+    color: var(--main-button-color);
+}
+.host .dashboard .review b {
+    color: var(--main-text-color);
+}
+.host .dashboard .review span:last-of-type {
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+}
+.host .dashboard .lodges-list {
+    /* .details height + .details margin top  + .review margin top + the given margin top */
+    margin-top: calc(200px + 45px + 68px + 38px);
+}
+.host .dashboard .lodges-list h2 {
+    margin: 0 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.host .dashboard .lodges-list h2 a {
+    font-size: 16px;
+    font-weight: 500;
+    color: inherit;
+}
+.host .dashboard .lodges-list button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-weight: 500;
+}
+/* End dashboard */
+
+/* Start host lodge */
+.host .host-lodges .heading {
+    margin-top: 55px;
+    margin-bottom: 33px;
+}
+.host .host-lodges-info {
+    margin-top: 60px;
+}
+.host .host-lodges-info > a {
+    display: flex;
+    align-items: center;
+    color: #201f1d;
+    font-weight: 500;
+    text-decoration: underline;
+}
+.host .host-lodges-info svg {
+    margin-right: 5px;
+    color: #858585;
+}
+.host .host-lodges-info div.lodge-info {
+    background-color: white;
+    margin-top: 35px;
+    margin-bottom: 50px;
+    padding: 25px;
+    border-radius: 6px;
+}
+.host .host-lodges-info .lodge-view {
+    display: flex;
+    align-items: center;
+}
+.host .host-lodges-info .lodge-view img {
+    border-radius: 5px;
+    max-width: 160px;
+    margin-right: 20px;
+}
+@media (max-width: 575px) {
+    .host .host-lodges-info .lodge-view img {
+        width: 100%;
+        min-width: 90px;
+    }
+}
+.host .host-lodges-info .lodge-view .type {
+    margin: 0;
+}
+.host .host-lodges-info .lodge-view h3 {
+    margin: 16px 0 14px;
+    font-size: 26px;
+}
+.host .host-lodges-info .lodge-view .price {
+    font-size: 19px;
+    font-weight: bold;
+}
+.host .host-lodges-info .lodge-view .price::after {
+    position: relative;
+    font-weight: normal;
+    font-size: 16px;
+    top: 0;
+}
+.host .host-lodges-info .lodge-nav {
+    margin: 27px 0;
+}
+.host .host-lodges-info .lodge-nav a {
+    color: #161616;
+}
+.host .host-lodges-info .details h5 {
+    font-size: 14px;
+    line-height: 21px;
+    margin: 15px 0;
+}
+.host .host-lodges-info .details span {
+    font-weight: 500;
+}
+.host .host-lodges-info .pricing .price {
+    font-size: 24px;
+    font-weight: 500;
+}
+.host .host-lodges-info .pricing .price::after {
+    font-size: inherit;
+    top: auto;
+    right: auto;
+    font-weight: normal;
+    color: var(--alt-text-color);
+}
+.host .host-lodges-info .photo img {
+    width: 110px;
+    border-radius: 5px;
+}
+/* End host lodge */
+
+/* Start host reviews  */
+.host .reviews svg {
+    color: var(--main-button-color);
+}
+.host .reviews .reviews-rate h3 {
+    margin: 33px 0 25px;
+    display: flex;
+    align-items: center;
+    font-size: 32px;
+}
+.host .reviews .reviews-rate h3 span {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+}
+.host .reviews .reviews-rate h3 svg {
+    width: 27px;
+}
+.host .reviews .rate-bars {
+    margin-bottom: 36px;
+}
+.host .reviews .rate-bars div {
+    margin-left: 90px;
+    margin-right: 90px;
+    height: 8px;
+    background-color: #b9b9b9;
+    border-radius: 6px;
+    position: relative;
+}
+.host .reviews .rate-bars div:not(:last-child) {
+    margin-bottom: 32px;
+}
+.host .reviews .rate-bars div::before,
+.host .reviews .rate-bars div::after {
+    position: absolute;
+    top: -7px;
+    font-weight: 500;
+}
+.host .reviews .rate-bars div::before {
+    content: attr(data-stars);
+    left: -90px;
+}
+.host .reviews .rate-bars div::after {
+    content: attr(data-rate);
+    right: -90px;
+}
+.host .reviews .rate-bars div span {
+    display: block;
+    height: 100%;
+    background-color: var(--main-button-color);
+    border-radius: 6px;
+}
+.host .reviews .reviews-comments {
+    margin-bottom: 64px;
+}
+.host .reviews .reviews-comments h3 {
+    margin-bottom: 19px;
+}
+.host .reviews .review-comment {
+    padding-bottom: 25px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid #c7c7c7;
+}
+.host .reviews .review-comment svg {
+    width: 24px;
+}
+.host .reviews .review-comment .name {
+    font-weight: 600;
+}
+.host .reviews .review-comment .name span {
+    color: #8c8c8c;
+}
+.host .reviews .review-comment .comment {
+    font-weight: 500;
+    line-height: 1.4;
+}
+/* End host reviews  */
+
+/* Start host income */
+.host .income .heading span {
+    display: block;
+    margin-top: 43px;
+    margin-left: 0;
+}
+.host .income .total-income {
+    font-size: 48px;
+    font-weight: 800;
+    margin: 31px 0 57px;
+}
+.host .income-table .incomes {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+}
+.host .income-table .incomes span,
+.host .income-table .months span {
+    font-weight: 500;
+    color: var(--alt-text-color);
+}
+.host .income-table .incomes span {
+    height: 20px;
+    font-size: 18px;
+    overflow: hidden;
+    position: relative;
+}
+.host .income-table .incomes span::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    top: 50%;
+    left: 60px;
+    border-bottom: 2px dashed #b9b9b9;
+    transform: translateY(-2px);
+}
+.host .income-table .months {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 70px;
+}
+.host .income-table .months span {
+    padding: 0 5px;
+    font-size: 20px;
+    position: relative;
+}
+.host .income-table .months span::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: var(--height);
+    background-color: #ffead0;
+    border-radius: 6px 6px 0 0;
+    left: 0;
+    bottom: 100%;
+    transform: translateY(-9px);
+}
+.host .income-table .months span.active::after {
+    background-color: var(--main-button-color);
+}
+.host .income .transactions h3 {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    max-width: 450px;
+    font-size: 24px;
+    margin: 62px 0 31px;
+}
+.host .income .transaction {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 35px;
+    margin-bottom: 31px;
+    background-color: white;
+    border-radius: 8px;
+}
+.host .income .transaction h4 {
+    font-size: 36px;
+    font-weight: 600;
+    margin: 0;
+}
+.host .income .transaction p {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--alt-text-color);
+}
+/* End host income */
+
+/* End host page */
+
+/* Start login page */
+.login {
+    text-align: center;
+}
+.login .login-error {
+    color: red;
+    font-size: 28px;
+    margin: 0;
+}
+.login h2 {
+    font-size: 32px;
+    margin-bottom: 50px;
+}
+.login form {
+    max-width: 550px;
+    margin: 0 auto;
+}
+.login form input {
+    width: 100%;
+    padding: 10px 15px;
+    outline: none;
+    border: 1px solid var(--alt-text-color);
+    border-collapse: collapse;
+}
+.login form input[type="email"] {
+    border-radius: 6px 6px 0 0;
+    border-bottom: none;
+}
+.login form input[type="password"] {
+    border-radius: 0 0 6px 6px;
+}
+.login form input::placeholder {
+    color: var(--alt-text-color);
+    opacity: 1;
+    transition: 0.3s;
+}
+.login form input:focus::placeholder {
+    opacity: 0;
+}
+.login form button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: var(--main-button-color);
+    color: white;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    border-radius: 6px;
+}
+.login .create-account {
+    margin-top: 47px;
+    font-weight: 500;
+}
+.login .create-account a {
+    white-space: nowrap;
+    font-weight: bold;
+    color: var(--main-button-color);
+}
+/* Start login page */
+
+/* Start not found page */
+.not-found .container {
+    max-width: 550px;
+    text-align: center;
+}
+.not-found h2 {
+    font-size: 32px;
+}
+.not-found a {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #161616;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 6px;
+}
+/* End not found page */
+
+/* Start footer */
+footer {
+    height: 75px;
+    padding: 15px;
+    text-align: center;
+    background-color: var(--main-footer-color);
+    color: #aaaaaa;
+}
+footer p {
+    margin: 0 0 10px;
+    text-transform: uppercase;
+}
+footer span svg {
+    vertical-align: top;
+    color: #e31b23;
+}
+/* End footer */
