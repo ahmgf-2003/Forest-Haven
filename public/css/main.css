@@ -403,7 +403,6 @@ header nav a {
 }
 .lodge img {
     border-radius: 5px;
-    width: 100%;
     overflow: auto; /* fix rresizeing the image in chromioum browsersby change the user agent overflow: clip */
 }
 .lodge .details {
@@ -411,7 +410,6 @@ header nav a {
 }
 @media (min-width: 768px) {
     .lodge .details {
-        min-width: 300px;
         margin: 0;
     }
 }

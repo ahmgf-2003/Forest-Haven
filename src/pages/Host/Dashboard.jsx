@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
+import { getHostLodges } from "../../firebase";
 
 const Host = () => {
     const [lodges, setLodges] = useState(null);
 
     useEffect(() => {
-        fetch("/api/host/lodges")
-            .then(res => res.json())
-            .then(data => setLodges(data.lodges));
+        getHostLodges()
+            .then(data => setLodges(data))
+            .catch(err => {throw new Error(err)});
     }, [])
 
     return (
@@ -39,7 +40,7 @@ const Host = () => {
             <div>
                 <div className="lodges-list">
                     <h2 className="heading">
-                        Your listed Lodges
+                        {lodges ? "Your listed lodges" : "No lodges to list"}
                         <Link to="lodges">View all</Link>
                     </h2>
                     {lodges && 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, Link, useSearchParams } from "react-router-dom";
+import { getLodges } from "../../firebase";
 
 const Lodges = () => {
     const [lodges, setLodges] = useState(null);
@@ -9,9 +10,9 @@ const Lodges = () => {
     const typeFilter = searchParams.get("type");
 
     useEffect(() => {
-        fetch("/api/lodges")
-            .then((res) => res.json())
-            .then((data) => setLodges(data.lodges));
+        getLodges()
+            .then(data => setLodges(data))
+            .catch(err => {throw new Error(err)})
     }, []);
 
     if (!lodges) {
@@ -73,7 +74,12 @@ const Lodges = () => {
                                 return;
                             } 
                             return (
-                                <Link to={lodge.id} state={{type: typeFilter, search: location.search}} className="lodge-card" key={lodge.id}>
+                                <Link 
+                                    to={lodge.id} 
+                                    state={{type: typeFilter, search: location.search}} 
+                                    className="lodge-card" 
+                                    key={lodge.id}
+                                >
                                     <img src={lodge.imageUrl} alt={lodge.name}/>
                                     <div className="details">
                                         <span className="name">{lodge.name}</span>

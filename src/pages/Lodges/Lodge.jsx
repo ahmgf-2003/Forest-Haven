@@ -1,20 +1,26 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams, Link } from "react-router-dom";
+import { useLocation, useParams, Link, useNavigate } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import { getLodge } from "../../firebase";
 
 const Lodge = () => {
     const { id } = useParams();
     const [lodge, setLodge] = useState(null);
     const location = useLocation();
+    const navigate = useNavigate();
 
     const type = location.state?.type || "";
     const search = location.state?.search || "";
 
     useEffect(() => {
-        fetch("/api/lodge/" + id)
-            .then((res) => res.json())
-            .then((data) => setLodge(data.lodge));
+        getLodge(id)
+            .then(data => setLodge(data))
+            .catch(err => {throw new Error(err)});
     }, []);
+
+    if (lodge && Object.keys(lodge).length === 1) {
+        navigate("/404"); // return not found page 
+    }
 
     return (
         <section className="lodge">

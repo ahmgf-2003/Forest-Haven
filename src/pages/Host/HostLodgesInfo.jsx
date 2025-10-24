@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import { useParams, Outlet, Link, NavLink } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import { getLodge } from "../../firebase";
 
 const HostLodgesInfo = () => {
     const { id } = useParams();
     const [lodge, setLodge] = useState(null);
 
     useEffect(() => {
-        fetch(`/api/host/lodges/${id}`)
-            .then(res => res.json())
-            .then(data => setLodge(data.lodge));
+        getLodge(id)
+            .then(data => setLodge(data))
+            .catch(err => {throw new Error(err)});
     }, []);
 
     if (!lodge) {

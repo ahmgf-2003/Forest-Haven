@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { getHostLodges } from "../../firebase";
 
 const HostLodges = () => {
     const [lodges, setLodges] = useState(null);
 
     useEffect(() => {
-        fetch("/api/host/lodges")
-            .then((res) => res.json())
-            .then((data) => setLodges(data.lodges));
+        getHostLodges()
+            .then(data => setLodges(data))
+            .catch(err => {throw new Error(err)});
     }, []);
 
-    const lodgesComponents = lodges &&
+    const lodgesComponents =
+        lodges &&
         lodges.map((lodge) => (
             <Link to={lodge.id} className="lodge" key={lodge.id}>
                 <img src={lodge.imageUrl} alt={lodge.name} />
@@ -27,10 +29,12 @@ const HostLodges = () => {
 
     return (
         <div className="lodges-list host-lodges">
-            <h2 className="heading">Your listed Lodges</h2>
+            <h2 className="heading">
+                {lodges ? "Your listed lodges" : "No lodges to list"}
+            </h2>
             {lodgesComponents}
         </div>
-        );
+    );
 };
 
 export default HostLodges;
