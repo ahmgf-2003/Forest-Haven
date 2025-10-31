@@ -23,6 +23,24 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const lodgesCollectionRef = collection(db, "lodges");
+const usersCollectionRef = collection(db, "users");
+
+export async function getUser(user) {
+    const q = query(
+        usersCollectionRef, 
+        where("email", "==", user.email),
+        where("password", "==", user.password)
+    );
+
+    const snapshot =  await getDocs(q);
+    const users = snapshot.docs.map(doc => ({
+        ...doc.data(),
+        id: doc.id,
+    }))
+
+
+    return users[0];
+}
 
 export async function getLodges() {
     const snapshot = await getDocs(lodgesCollectionRef);

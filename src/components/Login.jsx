@@ -1,9 +1,10 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { getUser } from "../firebase";
 
 const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const path = location.state?.path || "/host";
+    const path = location.state?.path || "/Forest-Haven/host";
     const message = location.state?.message
 
     function handleSubmit(formData) {
@@ -11,8 +12,16 @@ const Login = () => {
         const password = formData.get("password"); 
 
         if (email && password) {
-            localStorage.setItem("isLogged", "true");
-            navigate(path, {replace: true})
+            getUser({email, password})
+                .then(res => {
+                    if (res) {
+                        console.log(res);
+                        localStorage.setItem("isLogged", "true");
+                        navigate(path, {replace: true})
+                        return true
+                    }
+                    throw new Error("wrong email and/or password");
+                })
         }
     }
 
