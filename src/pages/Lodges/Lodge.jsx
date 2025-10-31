@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useParams, Link, useNavigate } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { getLodge } from "../../firebase";
+import Loader from "../../components/Loader"
 
 const Lodge = () => {
     const { id } = useParams();
@@ -20,6 +21,10 @@ const Lodge = () => {
 
     if (lodge && Object.keys(lodge).length === 1) {
         navigate("/404"); // return not found page 
+    }
+
+        if (!lodge) {
+        return <Loader />;
     }
 
     return (

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getHostLodges } from "../../firebase";
+import Loader from "../../components/Loader"
 
 const HostLodges = () => {
     const [lodges, setLodges] = useState(null);
@@ -10,6 +11,10 @@ const HostLodges = () => {
             .then(data => setLodges(data))
             .catch(err => {throw new Error(err)});
     }, []);
+
+        if (!lodges) {
+        return <Loader />;
+    }
 
     const lodgesComponents =
         lodges &&

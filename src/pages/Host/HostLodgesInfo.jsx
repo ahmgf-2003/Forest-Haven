@@ -1,25 +1,26 @@
 import { useState, useEffect } from "react";
 import { useParams, Outlet, Link, NavLink } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { getLodge } from "../../firebase";
+import { getHostLodge } from "../../firebase";
+import Loader from "../../components/Loader";
 
 const HostLodgesInfo = () => {
     const { id } = useParams();
     const [lodge, setLodge] = useState(null);
 
     useEffect(() => {
-        getLodge(id)
+        getHostLodge(id)
             .then(data => setLodge(data))
             .catch(err => {throw new Error(err)});
     }, []);
 
     if (!lodge) {
-        return <h1>Loading...</h1>;
+        return <Loader />;
     }
 
     return (
         <div className="host-lodges-info">
-            <Link to="/host/lodges">
+            <Link to="/Forest-Haven/host/lodges">
                 <FaArrowLeftLong /> Back to all Lodges
             </Link>
             <div className="lodge-info">

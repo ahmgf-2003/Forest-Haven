@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, Link, useSearchParams } from "react-router-dom";
 import { getLodges } from "../../firebase";
+import Loader from "../../components/Loader"
 
 const Lodges = () => {
     const [lodges, setLodges] = useState(null);
@@ -15,14 +16,8 @@ const Lodges = () => {
             .catch(err => {throw new Error(err)})
     }, []);
 
-    if (!lodges) {
-        return (
-            <section>
-                <div className="container">
-                    <h2 style={{ fontSize: "40px" }}>Loading...</h2>
-                </div>
-            </section>
-        );
+        if (!lodges) {
+        return <Loader />;
     }
 
     // function to add search query to the current url

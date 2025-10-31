@@ -6,7 +6,7 @@ const Header = () => {
     return (
         <header>
             <div className="container">
-                <Link to="/" className="logo">
+                <Link to="/Forest-Haven/" className="logo">
                     <img src={logo} alt="logo" />
                     ForestHaven
                 </Link>
@@ -14,7 +14,7 @@ const Header = () => {
                     <ul>
                         <li>
                             <NavLink
-                                to="/host"
+                                to="/Forest-Haven/host"
                                 className={({ isActive }) => isActive ? "active" : ""}
                             >
                                 Host
@@ -22,7 +22,7 @@ const Header = () => {
                         </li>
                         <li>
                             <NavLink
-                                to="/about"
+                                to="/Forest-Haven/about"
                                 className={({ isActive }) => isActive ? "active" : ""}
                             >
                                 About
@@ -30,14 +30,14 @@ const Header = () => {
                         </li>
                         <li>
                             <NavLink
-                                to="/lodges"
+                                to="/Forest-Haven/lodges"
                                 className={({ isActive }) => isActive ? "active" : ""}
                             >
                                 Lodges
                             </NavLink>
                         </li>
                     </ul>
-                    <Link to="/login">
+                    <Link to="/Forest-Haven/login">
                         <FaRegUserCircle />
                     </Link>
                 </nav>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { getHostLodges } from "../../firebase";
+import Loader from "../../components/Loader"
 
 const Host = () => {
     const [lodges, setLodges] = useState(null);
@@ -11,6 +12,10 @@ const Host = () => {
             .then(data => setLodges(data))
             .catch(err => {throw new Error(err)});
     }, [])
+
+        if (!lodges) {
+        return <Loader />;
+    }
 
     return (
         <div className="dashboard">

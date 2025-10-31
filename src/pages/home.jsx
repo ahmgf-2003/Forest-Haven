@@ -12,7 +12,7 @@ const Home = () => {
                         ultimate nature escape.
                     </p>
                 </div>
-                <Link to="/lodges">
+                <Link to="/Forest-Haven/lodges">
                     Find your lodge
                 </Link>
             </div>

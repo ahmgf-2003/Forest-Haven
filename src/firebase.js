@@ -7,6 +7,7 @@ import {
     getDoc,
     query,
     where,
+    documentId,
 } from "firebase/firestore/lite";
 
 const firebaseConfig = {
@@ -22,7 +23,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const lodgesCollectionRef = collection(db, "lodges");
-const q = query(lodgesCollectionRef, where("hostId", "==", 123));
 
 export async function getLodges() {
     const snapshot = await getDocs(lodgesCollectionRef);
@@ -45,6 +45,7 @@ export async function getLodge(id) {
 }
 
 export async function getHostLodges() {
+    const q = query(lodgesCollectionRef, where("hostId", "==", 123));
     const snapshot = await getDocs(q);
     const hostLodges = snapshot.docs.map((doc) => ({
         ...doc.data(),
@@ -52,4 +53,20 @@ export async function getHostLodges() {
     }));
 
     return hostLodges;
+}
+
+export async function getHostLodge(id) {
+    const q = query(
+        lodgesCollectionRef,
+        where(documentId(), "==", id),
+        where("hostId", "==", 123)
+    );
+    const snapshot = await getDocs(q);
+
+    const lodges = snapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+    }));
+
+    return lodges[0];
 }

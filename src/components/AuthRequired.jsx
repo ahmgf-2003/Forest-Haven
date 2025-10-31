@@ -7,7 +7,7 @@ const AuthRequired = () => {
     if (!isLogged) {
         return (
             <Navigate
-                to="/login"
+                to="/Forest-Haven/login"
                 replace
                 state={{
                     path: `${location.pathname}${location.search}`,
