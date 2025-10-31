@@ -251,7 +251,7 @@ header nav a {
 
 /* Start landing page */
 .landing {
-    background-image: url("/Forest-Haven/src/assets/images/landing.png");
+    background-image: url("../images/landing.png");
     background-size: cover;
     background-position: center;
     color: white;
