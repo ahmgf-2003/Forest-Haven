@@ -173,6 +173,12 @@ header nav ul {
     display: flex;
     align-items: center;
 }
+@media (max-width: 767px) {
+    header .container {
+        justify-content: center !important;
+        flex-wrap: wrap;
+    }
+}
 header .container {
     justify-content: space-between;
     height: 110px;
@@ -207,9 +213,45 @@ header nav a {
 }
 /* End header */
 
+/* Start loader */
+.loader {
+    padding: 50px 0;
+    position: relative;
+}
+.loader::before,
+.loader::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.loader::before {
+    width: 120px;
+    height: 120px;
+    border: 8px solid var(--main-button-color);
+    border-right-color: transparent;
+    animation: spin 1.2s linear infinite;
+}
+.loader::after {
+    width: 90px;
+    height: 90px;
+    border: 7px solid var(--main-text-color);
+    border-left-color: transparent;
+    top: 65px;
+    animation: spin 1s linear infinite;
+}
+/* End loader */
+
+@keyframes spin {
+    to {
+        transform: translateX(-50%) rotate(360deg);
+    }
+}
+
 /* Start landing page */
 .landing {
-    background-image: url("/src/assets/images/landing.png");
+    background-image: url("/Forest-Haven/src/assets/images/landing.png");
     background-size: cover;
     background-position: center;
     color: white;
