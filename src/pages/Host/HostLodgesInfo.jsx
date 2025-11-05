@@ -3,18 +3,35 @@ import { useParams, Outlet, Link, NavLink } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { getHostLodge } from "../../firebase";
 import Loader from "../../components/Loader";
+import Error from "../../components/Error";
 
 const HostLodgesInfo = () => {
     const { id } = useParams();
     const [lodge, setLodge] = useState(null);
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         getHostLodge(id)
             .then(data => setLodge(data))
-            .catch(err => {throw new Error(err)});
+            .catch(err => {
+                setError(true)
+                throw new Error(err)
+            })
+            .finally(() => setLoading(false));
     }, []);
 
-    if (!lodge) {
+    if (error || lodge === undefined) {
+        return (
+            <Error>
+                <h2>You Can't access this lodge</h2>
+                <p>you don't have authority to access it</p>
+                <Link to="/Forest-Haven/host">Go back to host</Link>
+            </Error>
+        );
+    }
+
+    if (loading) {
         return <Loader />;
     }
 

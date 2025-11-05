@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { useLocation, Link, useSearchParams } from "react-router-dom";
 import { getLodges } from "../../firebase";
-import Loader from "../../components/Loader"
+import Loader from "../../components/Loader";
+import Error from "../../components/Error";
 
 const Lodges = () => {
     const [lodges, setLodges] = useState(null);
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [searchParams] = useSearchParams();
     const location = useLocation();
 
@@ -13,10 +16,24 @@ const Lodges = () => {
     useEffect(() => {
         getLodges()
             .then(data => setLodges(data))
-            .catch(err => {throw new Error(err)})
+            .catch(err => {
+                setError(true)
+                throw new Error(err)
+            })
+            .finally(() => setLoading(false));
     }, []);
 
-        if (!lodges) {
+    if (error) {
+        return (
+            <Error>
+                <h2>Soemthing went wrong with lodges page</h2>
+                <p>please try again later</p>
+                <Link to="/Forest-Haven/">Go back to home</Link>
+            </Error>
+        );
+    }
+
+        if (loading) {
         return <Loader />;
     }
 

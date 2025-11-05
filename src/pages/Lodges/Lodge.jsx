@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams, Link, useNavigate } from "react-router-dom";
+import { useLocation, useParams, Link } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { getLodge } from "../../firebase";
 import Loader from "../../components/Loader"
+import Error from "../../components/Error";
 
 const Lodge = () => {
     const { id } = useParams();
     const [lodge, setLodge] = useState(null);
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
     const location = useLocation();
-    const navigate = useNavigate();
 
     const type = location.state?.type || "";
     const search = location.state?.search || "";
@@ -16,14 +18,23 @@ const Lodge = () => {
     useEffect(() => {
         getLodge(id)
             .then(data => setLodge(data))
-            .catch(err => {throw new Error(err)});
+            .catch(err => {
+                setError(true)
+                throw new Error(err)
+            })
+            .finally(() => setLoading(false));
     }, []);
 
-    if (lodge && Object.keys(lodge).length === 1) {
-        navigate("/404"); // return not found page 
+    if (error || (lodge && Object.keys(lodge).length === 1)) {
+        return (
+            <Error>
+                <h2>It looks like you tried to access a lodge does't exisit</h2>
+                <Link to={`/Forest-Haven/Lodges`}>Go back to lodges</Link>
+            </Error>
+        );
     }
 
-        if (!lodge) {
+    if (loading) {
         return <Loader />;
     }
 

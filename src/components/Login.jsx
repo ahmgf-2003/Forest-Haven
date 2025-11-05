@@ -1,11 +1,12 @@
+import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getUser } from "../firebase";
 
 const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
+    const [message, setMessage] = useState(location.state?.message);
     const path = location.state?.path || "/Forest-Haven/host";
-    const message = location.state?.message
 
     function handleSubmit(formData) {
         const email = formData.get("email"); 
@@ -20,6 +21,7 @@ const Login = () => {
                         navigate(path, {replace: true})
                         return true
                     }
+                    setMessage("wrong email and/or password");
                     throw new Error("wrong email and/or password");
                 })
         }

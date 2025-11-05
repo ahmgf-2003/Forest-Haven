@@ -491,8 +491,15 @@ header nav a {
     position: relative;
 }
 .host nav a {
+    display: inline-block;
     margin-right: 30px;
     color: var(--alt-text-color);
+}
+@media (max-width: 767px) {
+    .host nav a {
+        margin-right: 20px;
+        font-size: 14px;
+    }
 }
 
 /* Start dashboard */
@@ -917,15 +924,24 @@ header nav a {
 }
 /* Start login page */
 
-/* Start not found page */
-.not-found .container {
+/* Start not found page and error section */
+.not-found .container, 
+.error .container {
     max-width: 550px;
     text-align: center;
 }
-.not-found h2 {
+.not-found h2,
+.error h2 {
     font-size: 32px;
 }
-.not-found a {
+.error p {
+    margin-top: -15px;
+    margin-bottom: 30px;
+    font-size: 18px;
+    color: var(--alt-text-color);
+}
+.not-found a, 
+.error a {
     display: block;
     width: 100%;
     padding: 15px;
@@ -935,7 +951,7 @@ header nav a {
     font-weight: bold;
     border-radius: 6px;
 }
-/* End not found page */
+/* End found page and error section */
 
 /* Start footer */
 footer {
