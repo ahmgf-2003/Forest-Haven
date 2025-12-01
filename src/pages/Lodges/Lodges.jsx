@@ -1,41 +1,13 @@
-import { useEffect, useState } from "react";
-import { useLocation, Link, useSearchParams } from "react-router-dom";
-import { getLodges } from "../../firebase";
+import { Suspense } from "react";
+import { useLocation, Link, useSearchParams, useLoaderData, Await } from "react-router-dom";
 import Loader from "../../components/Loader";
 import Error from "../../components/Error";
 
 const Lodges = () => {
-    const [lodges, setLodges] = useState(null);
-    const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(true);
     const [searchParams] = useSearchParams();
     const location = useLocation();
-
+    const { lodges } = useLoaderData();
     const typeFilter = searchParams.get("type");
-
-    useEffect(() => {
-        getLodges()
-            .then(data => setLodges(data))
-            .catch(err => {
-                setError(true)
-                throw new Error(err)
-            })
-            .finally(() => setLoading(false));
-    }, []);
-
-    if (error) {
-        return (
-            <Error>
-                <h2>Soemthing went wrong with lodges page</h2>
-                <p>please try again later</p>
-                <Link to="/Forest-Haven/">Go back to home</Link>
-            </Error>
-        );
-    }
-
-        if (loading) {
-        return <Loader />;
-    }
 
     // function to add search query to the current url
     function addSearchquery(type, value) {
@@ -79,36 +51,47 @@ const Lodges = () => {
                         </Link>
                     )}
                 </div>
-                <div className="lodges-container">
-                    {lodges &&
-                        lodges.map((lodge) => {
-                            if (typeFilter && typeFilter !== lodge.type) {
-                                return;
-                            } 
+                <Suspense fallback={<Loader />}>
+                    <Await
+                        errorElement={
+                            <Error>
+                                <h2>Something went wrong</h2>
+                                <p>Try again later.</p>
+                                <Link to="/Forest-Haven/">Go Home</Link>
+                            </Error>
+                        }
+                        resolve={lodges}
+                    >
+                        {(resolvedLodges) => {
+                            const filteredLodges = resolvedLodges.filter(lodge => 
+                                typeFilter ? typeFilter === lodge.type : true
+                            )
                             return (
-                                <Link 
-                                    to={lodge.id} 
-                                    state={{type: typeFilter, search: location.search}} 
-                                    className="lodge-card" 
-                                    key={lodge.id}
-                                >
-                                    <img src={lodge.imageUrl} alt={lodge.name}/>
-                                    <div className="details">
-                                        <span className="name">{lodge.name}</span>
-                                        <span className="price" data-currency="$">
-                                            {lodge.price}
-                                        </span>
-                                        <div>
-                                            <span className={`type ${lodge.type}`}>
-                                                {lodge.type}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </Link>
+                                <div className="lodges-container">
+                                    {filteredLodges.map(lodge => (
+                                        <Link 
+                                            to={lodge.id}
+                                            state={{type: typeFilter, search: location.search}}
+                                            className="lodge-card"
+                                            key={lodge.id}
+                                        >
+                                            <img src={lodge.imageUrl} alt={lodge.name} />
+                                            <div className="details">
+                                                <span className="name">{lodge.name}</span>
+                                                <span className="price" data-currency="$">
+                                                    {lodge.price}
+                                                </span>
+                                                <span className={`type ${lodge.type}`}>
+                                                    {lodge.type}
+                                                </span>
+                                            </div>
+                                        </Link>
+                                    ))}
+                                </div>
                             );
-                        }).filter(lodge => lodge ? true : false) // to remove undefined values
-                        } 
-                </div>
+                        }}
+                    </Await>
+                </Suspense>
             </div>
         </section>
     );
