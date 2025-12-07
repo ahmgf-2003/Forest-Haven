@@ -27,17 +27,16 @@ const usersCollectionRef = collection(db, "users");
 
 export async function getUser(user) {
     const q = query(
-        usersCollectionRef, 
+        usersCollectionRef,
         where("email", "==", user.email),
         where("password", "==", user.password)
     );
 
-    const snapshot =  await getDocs(q);
-    const users = snapshot.docs.map(doc => ({
+    const snapshot = await getDocs(q);
+    const users = snapshot.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
-    }))
-
+    }));
 
     return users[0];
 }
@@ -55,6 +54,10 @@ export async function getLodges() {
 export async function getLodge(id) {
     const lodgeDocRef = doc(db, "lodges", id);
     const snapshot = await getDoc(lodgeDocRef);
+
+    if (!snapshot.exists()) {
+        throw new Error("No such lodge with id of " + id);
+    }
 
     return {
         ...snapshot.data(),

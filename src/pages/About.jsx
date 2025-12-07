@@ -25,7 +25,7 @@ const About = () => {
                 <div className="explore">
                     <span>Find your lodge.</span>
                     <span>Feel at home.</span>
-                    <Link to="/Forest-Haven/lodges">Explore our lodges</Link>
+                    <Link to="/lodges">Explore our lodges</Link>
                 </div>
             </div>
         </section>

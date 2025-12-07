@@ -6,7 +6,7 @@ const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [message, setMessage] = useState(location.state?.message);
-    const path = location.state?.path || "/Forest-Haven/host";
+    const path = location.state?.path || "/host";
 
     function handleSubmit(formData) {
         const email = formData.get("email"); 

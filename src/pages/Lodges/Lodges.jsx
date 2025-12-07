@@ -57,7 +57,7 @@ const Lodges = () => {
                             <Error>
                                 <h2>Something went wrong</h2>
                                 <p>Try again later.</p>
-                                <Link to="/Forest-Haven/">Go Home</Link>
+                                <Link to="/">Go Home</Link>
                             </Error>
                         }
                         resolve={lodges}

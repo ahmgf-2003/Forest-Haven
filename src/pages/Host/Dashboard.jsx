@@ -1,38 +1,11 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Suspense } from "react";
+import { Link, Await, useLoaderData } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
-import { getHostLodges } from "../../firebase";
 import Loader from "../../components/Loader"
 import Error from "../../components/Error";
 
 const Host = () => {
-    const [lodges, setLodges] = useState(null);
-    const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        getHostLodges()
-            .then(data => setLodges(data))
-            .catch(err => {
-                setError(true)
-                throw new Error(err)
-            })
-            .finally(() => setLoading(false));
-    }, [])
-
-    if (error) {
-        return (
-            <Error>
-                <h2>Soemthing went wrong with host page</h2>
-                <p>please try again later</p>
-                <Link to="/Forest-Haven/">Go back to home</Link>
-            </Error>
-        );
-    }
-
-    if (loading) {
-        return <Loader />;
-    }
+    const { lodges } = useLoaderData();
 
     return (
         <div className="dashboard">
@@ -40,7 +13,9 @@ const Host = () => {
                 <div className="container">
                     <h2>Welcome</h2>
                     <p>
-                        <span>Income in last <ins>30 days</ins></span>
+                        <span>
+                            Income in last <ins>30 days</ins>
+                        </span>
                         <span>Details</span>
                     </p>
                     <h3>$2,260</h3>
@@ -50,7 +25,7 @@ const Host = () => {
                 <div className="container">
                     <h2>
                         <span>
-                            Review score 
+                            Review score
                             <span className="rate">
                                 <FaStar /> <b>5.0</b>/5
                             </span>
@@ -65,21 +40,45 @@ const Host = () => {
                         {lodges ? "Your listed lodges" : "No lodges to list"}
                         <Link to="lodges">View all</Link>
                     </h2>
-                    {lodges && 
-                        lodges.slice(0, 3).map(lodge => (
-                            <Link to={`lodges/${lodge.id}`} className="lodge" key={lodge.id}>
-                                <img src={lodge.imageUrl} alt={lodge.name} />
-                                <div className="info">
-                                    <h4>
-                                        {lodge.name}
-                                        <span className="price" data-currency="$">
-                                            {lodge.price}
-                                        </span>
-                                    </h4>
-                                    <button>Edit</button>
-                                </div>
-                            </Link>
-                        ))}
+                    <Suspense fallback={<Loader />}>
+                        <Await
+                            errorElement={
+                                <Error>
+                                    <h2>Soemthing went wrong with host page</h2>
+                                    <p>please try again later</p>
+                                    <Link to="/">Go back to home</Link>
+                                </Error>
+                            }
+                            resolve={lodges}
+                        >
+                            {(resolveLodges) =>
+                                resolveLodges.slice(0, 3).map((lodge) => (
+                                    <Link
+                                        to={`lodges/${lodge.id}`}
+                                        className="lodge"
+                                        key={lodge.id}
+                                    >
+                                        <img
+                                            src={lodge.imageUrl}
+                                            alt={lodge.name}
+                                        />
+                                        <div className="info">
+                                            <h4>
+                                                {lodge.name}
+                                                <span
+                                                    className="price"
+                                                    data-currency="$"
+                                                >
+                                                    {lodge.price}
+                                                </span>
+                                            </h4>
+                                            <button>Edit</button>
+                                        </div>
+                                    </Link>
+                                ))
+                            }
+                        </Await>
+                    </Suspense>
                 </div>
             </div>
         </div>
